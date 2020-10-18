@@ -22,13 +22,29 @@ class Board:
                 print("  "+" | ".join(self.board[i]))
         print("\n")
 
-    def solved(self):
-        # Returns true if the game has been decided otherwise false.
-        self.boolboard = [[True if self.board[j][i] == "O" else False if self.board[j][i] == "X" else None for i in range(3)] for j in range(3)]
-        return self.boolboard
+    def decided(self):
+        # Returns [true, board value] if the game has been decided otherwise false.
+        self.boolboard = self.board
+        if (self.boolboard[0][0] == self.boolboard[0][1]) and (self.boolboard[0][1] == self.boolboard[0][2]):
+            return [True, self.boolboard[0][0]]
+        elif (self.boolboard[1][0] == self.boolboard[1][1]) and (self.boolboard[1][1] == self.boolboard[1][2]):
+            return [True, self.boolboard[1][0]]
+        elif (self.boolboard[2][0] == self.boolboard[2][1]) and (self.boolboard[2][1] == self.boolboard[2][2]):
+            return [True, self.boolboard[2][0]]
+        elif (self.boolboard[0][0] == self.boolboard[1][0]) and (self.boolboard[1][0] == self.boolboard[2][0]):
+            return [True, self.boolboard[0][0]]
+        elif (self.boolboard[0][1] == self.boolboard[1][1]) and (self.boolboard[1][1] == self.boolboard[2][1]):
+            return [True, self.boolboard[0][1]]
+        elif (self.boolboard[0][2] == self.boolboard[1][2]) and (self.boolboard[1][2] == self.boolboard[2][2]):
+            return [True, self.boolboard[0][2]]
+        elif (self.boolboard[0][0] == self.boolboard[1][1]) and (self.boolboard[1][1] == self.boolboard[2][2]):
+            return [True, self.boolboard[0][0]]
+        elif (self.boolboard[0][2] == self.boolboard[1][1]) and (self.boolboard[1][1] == self.boolboard[2][0]):
+            return [True, self.boolboard[0][2]]
+        return False
 
 board = Board()
 board.nought(1,1)
 board.cross(2,2)
 board.display()
-print(board.solved())
+print(board.decided())
