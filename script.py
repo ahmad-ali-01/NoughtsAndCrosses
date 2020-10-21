@@ -32,17 +32,10 @@ class Board:
 
     @staticmethod
     def possible():
-        return [["O" for i in range()3], ["X" for i in range(3)]]
+        return [["O" for i in range(3)], ["X" for i in range(3)]]
 
     def decided(self):
         for i in  self.streams():
             if i in Board.possible():
                 return [True, i[0]]
         return False
-
-board = Board()
-board.nought(3,3)
-board.nought(2,2)
-board.display()
-print(board.streams())
-
