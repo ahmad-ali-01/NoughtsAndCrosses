@@ -13,6 +13,10 @@ class Board:
         # Places a cross on the board.
         self.board[3-pos[1]][pos[0]-1] = "X"
 
+    def get(self, pos:list):
+        # Gets position from board
+        return self.board[3-pos[1]][pos[0]-1]
+
     def display(self):
         # Displays the board.
         print("\n")
@@ -71,12 +75,18 @@ def play():
 
   while not board.decided():
     p1 = input("Player 1 --> ")
+    while not board.get(positions[p1]) == " ":
+      print("Position already filled...")
+      p1 = input("Player 1 --> ")
     print("\n")
     board.nought(positions[p1])
     board.display()
     print("\n")
     if not board.decided():
       p2 = input("Player 2 --> ")
+      while not board.get(positions[p2]) == " ":
+        print("Position already filled...")
+        p2 = input("Player 2 --> ")
       print("\n")
       board.cross(positions[p2])
       board.display()
